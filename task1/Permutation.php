@@ -23,25 +23,25 @@ class Permutation
         return $this->permute($this->amount);
     }
 
-    private function permute($amount , $step = 0, $ch = array(), $result = array())
+    private function permute($amount , $step = 0, $temp = array(), $result = array())
     {
         if ($amount == 1) {
             for ($k = 0; $k < count($this->text); $k++) {
-                if (in_array($k, $ch))
+                if (in_array($k, $temp))
                     continue;
                 $prefix = '';
-                foreach ($ch as $value) {
+                foreach ($temp as $value) {
                     $prefix .= $this->text[$value];
                 }
                 $this->result[] = $prefix . $this->text[$k];
             }
         } else {
             for ($i = 0; $i < count($this->text); $i++) {
-                if (in_array($i, $ch))
+                if (in_array($i, $temp))
                     continue;
-                $ch[$step] = $i;
+                $temp[$step] = $i;
 
-                $this->permute($amount - 1, $step + 1, $ch, $this->result);
+                $this->permute($amount - 1, $step + 1, $temp, $this->result);
             }
         }
         return $this->result;

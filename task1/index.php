@@ -3,7 +3,7 @@
 require_once('Permutation.php');
 
 try {
-    $perm = new Permutation('1234',3);
+    $perm = new Permutation('12345',3);
 } catch (Exception $e) {
     echo $e->getMessage();
     exit;
